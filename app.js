@@ -118,9 +118,11 @@ function render(){
     if(todos.length === 0){
       emptyEl.textContent = '還沒有任何待辦事項,新增一個吧!'
     }else if(currentFilter === 'active'){
-      emptyEl.textContent = '沒有未完成的事項'
+      // 當使用者在「未完成」篩選下看不到項目，提示並說明資料仍存在
+      emptyEl.textContent = '沒有未完成的事項 — 項目可能被標記為已完成，切回「全部」查看。'
     }else if(currentFilter === 'completed'){
-      emptyEl.textContent = '沒有已完成的事項'
+      // 已完成篩選空時明確說明項目仍在資料中，只是被過濾
+      emptyEl.textContent = '沒有已完成的事項 — 若剛取消勾選，該項目仍存在，切回「全部」可看到。'
     }else{
       emptyEl.textContent = '沒有任何待辦'
     }
