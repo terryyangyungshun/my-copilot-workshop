@@ -63,6 +63,11 @@ html,body{height:100%;margin:0;font-family: -apple-system, BlinkMacSystemFont, '
 .empty{padding:18px;text-align:center;color:var(--muted)}
 .footer{margin-top:14px;text-align:right;color:var(--muted)}
 
+.footer-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.footer-row .filter-btn{padding:8px 10px}
+.footer-row #clear-completed[hidden]{display:none}
+.footer-row #clear-completed[aria-disabled="true"]{opacity:0.5;pointer-events:none}
+
 /* 手機友善 */
 @media (max-width:420px){
   .card{padding:16px;border-radius:10px}
