@@ -6,6 +6,13 @@
   --danger: #ff6b6b;
   --text: #1f2d3d;
   --shadow: 0 6px 18px rgba(31,45,61,0.08);
+  /* 深色模式變數 */
+  --bg-dark: #0f1720;
+  --card-dark: #0b1220;
+  --text-dark: #e6eef8;
+  --muted-dark: #94a3b8;
+  --primary-dark: #6ea8fe;
+  --shadow-dark: 0 6px 18px rgba(0,0,0,0.6);
 }
 
 *{box-sizing:border-box}
@@ -13,7 +20,24 @@ html,body{height:100%;margin:0;font-family: -apple-system, BlinkMacSystemFont, '
 
 .wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:24px}
 .card{width:100%;max-width:520px;background:var(--card);border-radius:12px;box-shadow:var(--shadow);padding:20px}
-.title{margin:0 0 12px 0;font-size:1.4rem;text-align:center}
+.title{margin:0 0 12px 0;font-size:1.4rem;text-align:left}
+
+/* 主題透過 data-theme 屬性切換 */
+:root[data-theme='dark']{
+  background: var(--bg-dark);
+}
+.card[data-theme='dark']{
+  background: var(--card-dark);
+  box-shadow: var(--shadow-dark);
+}
+.card[data-theme='dark'] .title{color:var(--text-dark)}
+.card[data-theme='dark'] .todo-item{border-color:rgba(255,255,255,0.04)}
+.card[data-theme='dark'] .todo-text{color:var(--text-dark)}
+.card[data-theme='dark'] .todo-text.done{color:var(--muted-dark)}
+.card[data-theme='dark'] .input-row input{background:transparent;border-color:rgba(255,255,255,0.08);color:var(--text-dark)}
+.card[data-theme='dark'] .input-row button{background:var(--primary-dark)}
+.card[data-theme='dark'] .footer{color:var(--muted-dark)}
+.card[data-theme='dark'] .empty{color:var(--muted-dark)}
 
 .input-row{display:flex;gap:8px;margin-bottom:12px}
 .input-row input{flex:1;padding:10px 12px;border:1px solid #e6edf3;border-radius:8px;font-size:1rem}
@@ -28,6 +52,13 @@ html,body{height:100%;margin:0;font-family: -apple-system, BlinkMacSystemFont, '
 .todo-text{word-break:break-word}
 .todo-text.done{text-decoration:line-through;color:var(--muted);opacity:0.7}
 .delete-btn{background:transparent;border:none;color:var(--danger);cursor:pointer;padding:6px 8px;border-radius:6px}
+
+.filters{display:flex;gap:8px;margin-bottom:12px}
+.filter-btn{background:transparent;border:1px solid #e6edf3;padding:8px 10px;border-radius:8px;cursor:pointer}
+.filter-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+.theme-toggle{background:transparent;border:1px solid #e6edf3;padding:6px 10px;border-radius:8px;cursor:pointer}
+.theme-toggle[data-theme='dark']{background:transparent;border-color:rgba(255,255,255,0.06);color:var(--text-dark)}
 
 .empty{padding:18px;text-align:center;color:var(--muted)}
 .footer{margin-top:14px;text-align:right;color:var(--muted)}
@@ -44,3 +75,4 @@ html,body{height:100%;margin:0;font-family: -apple-system, BlinkMacSystemFont, '
 
 /* 讓清單項目內的按鈕點擊範圍比較大 */
 .delete-btn{font-weight:600}
+
