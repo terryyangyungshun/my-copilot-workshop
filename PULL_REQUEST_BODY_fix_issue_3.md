@@ -1,4 +1,4 @@
-Q2Nsb3NlcyAjMw0KDQqIOeahCIg5Y2X5Lq6IOWcqOW6kOaIkOacrOeahCBzdHVmZiDlkIjmjqjlkajluKbnvZHnlKjlsI
+Closes #3
 
 修改內容：
 - 在 `index.html` 的空訊息區塊 `#empty` 加入 `role="status" aria-live="polite"`，讓篩選變動時螢幕閱讀器能播報。
