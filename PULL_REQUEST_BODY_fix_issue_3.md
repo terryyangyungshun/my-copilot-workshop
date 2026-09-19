@@ -1,8 +1,8 @@
 Closes #3
 
 修改內容：
-- 在 `index.html` 的空訊息區塊 `#empty` 加入 `role="status" aria-live="polite"`。
-- 更新 `app.js` 的 `render()`：新增更明確的篩選空訊息，說明項目被過濾而非刪除。
+- 在 `index.html` 的空訊息區塊 `#empty` 加入 `role="status" aria-live="polite"`，以利螢幕閱讀器播報。
+- 更新 `app.js` 的 `render()`：當篩選後清單為空時顯示更清楚的提示文字，明確告知使用者項目只是被過濾（未被刪除）。
 
 驗證步驟：
 1. 開啟 `index.html`。
