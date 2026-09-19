@@ -11,6 +11,7 @@ const remainingEl = document.getElementById('remaining')
 const themeToggle = document.getElementById('theme-toggle')
 const filtersEl = document.querySelector('.filters')
 const cardEl = document.querySelector('.card')
+const clearCompletedBtn = document.getElementById('clear-completed')
 
 // 目前篩選狀態: all | active | completed
 let currentFilter = 'all'
@@ -117,10 +118,10 @@ function render(){
     emptyEl.style.display = 'block'
     if(todos.length === 0){
       emptyEl.textContent = '還沒有任何待辦事項,新增一個吧!'
-    }else if(currentFilter === 'active'){
+    } else if (currentFilter === 'active') {
       // 當使用者在「未完成」篩選下看不到項目，提示並說明資料仍存在
       emptyEl.textContent = '沒有未完成的事項 — 項目可能被標記為已完成，切回「全部」查看。'
-    }else if(currentFilter === 'completed'){
+    } else if (currentFilter === 'completed') {
       // 已完成篩選空時明確說明項目仍在資料中，只是被過濾
       emptyEl.textContent = '沒有已完成的事項 — 若剛取消勾選，該項目仍存在，切回「全部」可看到。'
     }else{
@@ -135,6 +136,18 @@ function render(){
   // 未完成數字永遠顯示全部數量中未完成的項目
   const remaining = todos.filter(t => !t.done).length
   remainingEl.textContent = remaining
+
+  // 更新 "清除已完成" 按鈕：如果有已完成項目則顯示，沒有則隱藏或停用
+  const hasCompleted = todos.some(t => t.done)
+  if(clearCompletedBtn){
+    if(hasCompleted){
+      clearCompletedBtn.hidden = false
+      clearCompletedBtn.removeAttribute('aria-disabled')
+    }else{
+      clearCompletedBtn.hidden = true
+      clearCompletedBtn.setAttribute('aria-disabled', 'true')
+    }
+  }
 }
 
 // 新增待辦 (忽略空白內容)
@@ -210,6 +223,24 @@ inputEl.addEventListener('keydown', (e) => {
 })
 
 addBtn.addEventListener('click', addTodo)
+
+// 清除所有已完成項目
+function clearCompleted(){
+  const todos = loadTodos()
+  const completedCount = todos.filter(t => t.done).length
+  if(completedCount === 0) return
+
+  const ok = confirm(`確定要刪除 ${completedCount} 個已完成的項目嗎？此操作無法復原。`)
+  if(!ok) return
+
+  const remaining = todos.filter(t => !t.done)
+  saveTodos(remaining)
+  render()
+}
+
+if(clearCompletedBtn){
+  clearCompletedBtn.addEventListener('click', clearCompleted)
+}
 
 // 主題相關初始化
 initTheme()
