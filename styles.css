@@ -1,0 +1,46 @@
+:root{
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --primary: #4b7bec;
+  --muted: #9aa4b2;
+  --danger: #ff6b6b;
+  --text: #1f2d3d;
+  --shadow: 0 6px 18px rgba(31,45,61,0.08);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans TC', 'Helvetica Neue', Arial; background:var(--bg); color:var(--text)}
+
+.wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:24px}
+.card{width:100%;max-width:520px;background:var(--card);border-radius:12px;box-shadow:var(--shadow);padding:20px}
+.title{margin:0 0 12px 0;font-size:1.4rem;text-align:center}
+
+.input-row{display:flex;gap:8px;margin-bottom:12px}
+.input-row input{flex:1;padding:10px 12px;border:1px solid #e6edf3;border-radius:8px;font-size:1rem}
+.input-row button{background:var(--primary);color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer}
+.input-row button:active{transform:translateY(1px)}
+
+.todo-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.todo-item{display:flex;align-items:center;justify-content:space-between;padding:10px;border-radius:8px;border:1px solid #f0f4f8}
+.todo-left{display:flex;align-items:center;gap:10px;flex:1}
+.todo-left label{display:flex;align-items:center;gap:10px;flex:1}
+.todo-left input[type="checkbox"]{width:18px;height:18px}
+.todo-text{word-break:break-word}
+.todo-text.done{text-decoration:line-through;color:var(--muted);opacity:0.7}
+.delete-btn{background:transparent;border:none;color:var(--danger);cursor:pointer;padding:6px 8px;border-radius:6px}
+
+.empty{padding:18px;text-align:center;color:var(--muted)}
+.footer{margin-top:14px;text-align:right;color:var(--muted)}
+
+/* 手機友善 */
+@media (max-width:420px){
+  .card{padding:16px;border-radius:10px}
+  .input-row button{padding:10px}
+}
+
+/* 小動畫 */
+.todo-item{transition:background .15s,transform .06s}
+.todo-item:active{transform:translateY(1px)}
+
+/* 讓清單項目內的按鈕點擊範圍比較大 */
+.delete-btn{font-weight:600}
